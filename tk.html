@@ -14,161 +14,190 @@
             --accent-color: #fbbf24;
         }
 
-        body { margin: 0; font-family: Arial, sans-serif; background: var(--bg-color); color: white; overflow-x: auto; }
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); color: white; overflow-x: auto; }
         header { background: var(--header-bg); padding: 20px; text-align: center; border-bottom: 3px solid var(--accent-color); }
         .back { margin: 15px; display: inline-block; background: var(--box-bg); color: var(--text-dark); 
                 padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; }
 
-        /* Container Utama */
-        .bracket {
+        .bracket-wrapper {
             display: flex;
             padding: 40px;
-            justify-content: flex-start;
-            min-width: 1200px;
-            align-items: stretch;
+            justify-content: center;
+            min-width: 1100px;
         }
 
-        /* Kolom Babak */
         .round {
             display: flex;
             flex-direction: column;
-            width: 200px;
+            width: 180px;
         }
 
-        /* Kotak Tim */
-        .match-cell {
-            height: 60px; /* Tinggi kotak standar */
+        /* Container untuk grup pertandingan agar garis menyatu */
+        .match-group {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
             position: relative;
         }
 
-        .team-box {
+        .match-box {
             background: var(--box-bg);
             color: var(--text-dark);
-            width: 100%;
             padding: 10px;
+            margin: 8px 0;
             border-radius: 5px;
             text-align: center;
             font-weight: bold;
             font-size: 13px;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
             position: relative;
             z-index: 2;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        .score { font-size: 11px; color: #059669; border-top: 1px solid #ddd; margin-top: 4px; padding-top: 2px; }
+        .score { border-top: 1px solid #bdd6cc; margin-top: 5px; padding-top: 5px; color: #059669; }
 
-        /* --- LOGIKA GARIS SESUAI GAMBAR --- */
-        
-        /* Garis Horizontal keluar dari kotak */
-        .team-box::after {
+        /* --- LOGIKA GARIS PENGHUBUNG (BORDER-BASED) --- */
+
+        /* Garis horizontal keluar dari kotak */
+        .match-box::after {
             content: "";
             position: absolute;
-            right: -30px;
+            right: -20px;
             top: 50%;
-            width: 30px;
+            width: 20px;
             height: 2px;
             background: var(--line-color);
         }
 
-        /* Garis Vertikal (Siku-siku) */
-        .connector-v {
+        /* Garis vertikal penghubung (Siku-siku) */
+        .connector {
             position: absolute;
-            right: -30px;
-            width: 2px;
-            background: var(--line-color);
+            right: -20px;
+            width: 20px;
+            border-right: 2px solid var(--line-color);
         }
 
-        /* Modifikator Tinggi Garis Vertikal agar menyambung sempurna */
-        .v-small { height: 60px; } /* Untuk jarak dekat */
-        .v-medium { height: 120px; } /* Untuk jarak sedang */
-        .v-large { height: 360px; } /* Untuk semifinal/final */
+        /* Siku Atas */
+        .c-top {
+            height: 50%;
+            top: 50%;
+            border-top: 2px solid var(--line-color);
+            border-radius: 0 10px 0 0;
+        }
 
-        /* Garis masuk ke babak berikutnya */
+        /* Siku Bawah */
+        .c-bottom {
+            height: 50%;
+            bottom: 50%;
+            border-bottom: 2px solid var(--line-color);
+            border-radius: 0 0 10px 0;
+        }
+
+        /* Garis horizontal masuk ke babak berikutnya */
         .in-line::before {
             content: "";
             position: absolute;
-            left: -30px;
+            left: -20px;
             top: 50%;
-            width: 30px;
+            width: 20px;
             height: 2px;
             background: var(--line-color);
         }
 
-        /* Final Styling */
+        /* Penyesuaian tinggi manual agar sejajar */
+        .r1 { height: 800px; }
+        .r2 { height: 800px; }
+        .r3 { height: 800px; }
+        
         .final-box { background: var(--accent-color) !important; color: #000; border: 2px solid #fff; }
-
-        /* Jarak antar kolom */
-        .col-gap { width: 60px; }
     </style>
 </head>
 <body>
 
-<header><h2>BAGAN TURNAMEN TK – 12 TIM</h2></header>
+<header><h2>KATEGORI TK – 12 TIM</h2></header>
 <a class="back" href="index.html">← HOME</a>
 
-<div class="bracket">
+<div class="bracket-wrapper">
     
-    <div class="round">
-        <div class="match-cell"><div class="team-box">TK 1 <div class="score">0:0</div></div></div>
-        <div class="match-cell"><div class="team-box">TK 2 <div class="score">0:0</div></div></div>
-        <div class="match-cell">
-            <div class="team-box">TK 3 <div class="score">0:0</div></div>
-            <div class="connector-v v-small" style="top: -30px;"></div> </div>
-        <div class="match-cell"><div class="team-box">TK 4 <div class="score">0:0</div></div></div>
-        <div class="match-cell">
-            <div class="team-box">TK 5 <div class="score">0:0</div></div>
-            <div class="connector-v v-small" style="top: -30px;"></div> </div>
-        <div class="match-cell"><div class="team-box">TK 6 <div class="score">0:0</div></div></div>
-        <div class="match-cell"><div class="team-box">TK 7 <div class="score">0:0</div></div></div>
-        <div class="match-cell"><div class="team-box">TK 8 <div class="score">0:0</div></div></div>
-        <div class="match-cell">
-            <div class="team-box">TK 9 <div class="score">0:0</div></div>
-            <div class="connector-v v-small" style="top: -30px;"></div> </div>
-        <div class="match-cell"><div class="team-box">TK 10 <div class="score">0:0</div></div></div>
-        <div class="match-cell">
-            <div class="team-box">TK 11 <div class="score">0:0</div></div>
-            <div class="connector-v v-small" style="top: -30px;"></div> </div>
-        <div class="match-cell"><div class="team-box">TK 12 <div class="score">0:0</div></div></div>
-    </div>
-
-    <div class="col-gap"></div>
-
-    <div class="round">
-        <div class="match-cell" style="margin-top: 30px;">
-            <div class="team-box in-line">Pemenang 1 <div class="score">0:0</div></div>
+    <div class="round r1">
+        <div class="match-group">
+            <div class="match-box">TK 1</div>
+            <div style="height: 40px"></div>
         </div>
-        <div class="match-cell" style="margin-top: 60px;">
-            <div class="team-box in-line">Pemenang 2 <div class="score">0:0</div></div>
-            <div class="connector-v v-medium" style="top: -60px;"></div>
+        <div class="match-group">
+            <div class="match-box">TK 2</div>
+            <div class="match-box">TK 3</div>
+            <div class="connector c-top" style="height: 45px; top: 38px;"></div>
         </div>
-        <div class="match-cell" style="margin-top: 60px;">
-            <div class="team-box in-line">Pemenang 3 <div class="score">0:0</div></div>
+        <div class="match-group">
+            <div class="match-box">TK 4</div>
+            <div class="match-box">TK 5</div>
+            <div class="connector c-bottom" style="height: 45px; bottom: 38px;"></div>
         </div>
-        <div class="match-cell" style="margin-top: 120px;">
-            <div class="team-box in-line">Pemenang 4 <div class="score">0:0</div></div>
-            <div class="connector-v v-medium" style="top: -60px;"></div>
+        <div class="match-group">
+            <div style="height: 40px"></div>
+            <div class="match-box">TK 6</div>
+        </div>
+        <div class="match-group">
+            <div class="match-box">TK 7</div>
+            <div style="height: 40px"></div>
+        </div>
+        <div class="match-group">
+            <div class="match-box">TK 8</div>
+            <div class="match-box">TK 9</div>
+            <div class="connector c-top" style="height: 45px; top: 38px;"></div>
+        </div>
+        <div class="match-group">
+            <div class="match-box">TK 10</div>
+            <div class="match-box">TK 11</div>
+            <div class="connector c-bottom" style="height: 45px; bottom: 38px;"></div>
+        </div>
+        <div class="match-group">
+            <div style="height: 40px"></div>
+            <div class="match-box">TK 12</div>
         </div>
     </div>
 
-    <div class="col-gap"></div>
-
-    <div class="round">
-        <div class="match-cell" style="margin-top: 120px;">
-            <div class="team-box in-line">SEMIFINAL 1 <div class="score">0:0</div></div>
+    <div class="round r2">
+        <div class="match-group">
+            <div class="match-box in-line">PEMENANG 1</div>
+            <div class="match-box in-line">PEMENANG 2/3</div>
+            <div class="connector c-top" style="height: 85px; top: 60px;"></div>
         </div>
-        <div class="match-cell" style="margin-top: 240px;">
-            <div class="team-box in-line">SEMIFINAL 2 <div class="score">0:0</div></div>
-            <div class="connector-v v-large" style="top: -180px;"></div>
+        <div class="match-group">
+            <div class="match-box in-line">PEMENANG 4/5</div>
+            <div class="match-box in-line">PEMENANG 6</div>
+            <div class="connector c-bottom" style="height: 85px; bottom: 60px;"></div>
+        </div>
+        <div class="match-group">
+            <div class="match-box in-line">PEMENANG 7</div>
+            <div class="match-box in-line">PEMENANG 8/9</div>
+            <div class="connector c-top" style="height: 85px; top: 60px;"></div>
+        </div>
+        <div class="match-group">
+            <div class="match-box in-line">PEMENANG 10/11</div>
+            <div class="match-box in-line">PEMENANG 12</div>
+            <div class="connector c-bottom" style="height: 85px; bottom: 60px;"></div>
         </div>
     </div>
 
-    <div class="col-gap"></div>
+    <div class="round r3">
+        <div class="match-group">
+            <div class="match-box in-line">SEMIFINAL 1</div>
+            <div class="match-box in-line">SEMIFINAL 2</div>
+            <div class="connector c-top" style="height: 220px; top: 155px;"></div>
+        </div>
+        <div class="match-group">
+            <div class="match-box in-line">SEMIFINAL 3</div>
+            <div class="match-box in-line">SEMIFINAL 4</div>
+            <div class="connector c-bottom" style="height: 220px; bottom: 155px;"></div>
+        </div>
+    </div>
 
     <div class="round">
-        <div class="match-cell" style="margin-top: 330px;">
-            <div class="team-box in-line final-box">GRAND FINAL <div class="score">0:0</div></div>
+        <div class="match-group">
+            <div class="match-box in-line final-box">GRAND FINAL</div>
         </div>
     </div>
 
