@@ -3,77 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Live Score Turnamen Futsal</title>
-
 <style>
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#064e3b;
-  color:white;
-}
-header{
-  background:#022c22;
-  padding:20px;
-  text-align:center;
-}
-h1,h2,h3{text-align:center}
-
-.hidden{display:none}
-
-.menu{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:20px;
-  margin:30px;
-}
-.menu button{
-  font-size:22px;
-  padding:20px 30px;
-  border:none;
-  border-radius:15px;
-  background:#ecfdf5;
-  color:#022c22;
-  cursor:pointer;
-}
-
-.back{
-  margin:20px;
-  padding:10px 20px;
-  font-size:18px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-.bracket{
-  display:flex;
-  overflow-x:auto;
-  padding:20px;
-}
-.round{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-around;
-  margin-right:40px;
-}
-.match{
-  background:#ecfdf5;
-  color:#022c22;
-  padding:10px;
-  width:200px;
-  margin:18px 0;
-  border-radius:10px;
-  text-align:center;
-  font-weight:bold;
-}
-.score{
-  font-size:22px;
-  margin:5px 0;
-}
+body{margin:0;font-family:Arial;background:#064e3b;color:white;text-align:center}
+header{background:#022c22;padding:30px}
+.menu{display:flex;justify-content:center;flex-wrap:wrap;gap:20px;margin:40px}
+a{background:#ecfdf5;color:#022c22;text-decoration:none;
+padding:20px 30px;border-radius:15px;font-size:22px;font-weight:bold}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -81,182 +18,13 @@ h1,h2,h3{text-align:center}
 <h2>MILAD LEMBAGA MUJAHIDIN KE-46</h2>
 </header>
 
-<!-- HOME -->
-<div id="home" class="menu">
-<button onclick="openPage('tk')">TK (12 Tim)</button>
-<button onclick="openPage('sd12')">SD 1–2 (24 Tim)</button>
-<button onclick="openPage('sd34')">SD 3–4 (24 Tim)</button>
-<button onclick="openPage('sd56')">SD 5–6 (24 Tim)</button>
-<button onclick="openPage('smp')">SMP (16 Tim)</button>
+<div class="menu">
+<a href="tk.html">TK (12 Tim)</a>
+<a href="sd12.html">SD 1–2 (24 Tim)</a>
+<a href="sd34.html">SD 3–4 (24 Tim)</a>
+<a href="sd56.html">SD 5–6 (24 Tim)</a>
+<a href="smp.html">SMP (16 Tim)</a>
 </div>
-
-<!-- ================= TK 12 TIM ================= -->
-<div id="tk" class="hidden">
-<button class="back" onclick="goHome()">← HOME</button>
-<h2>KATEGORI TK – 12 TIM</h2>
-
-<div class="bracket">
-
-<div class="round">
-<h3>Babak Awal</h3>
-<div class="match">TK 1<div class="score">0 : 0</div>TK 2</div>
-<div class="match">TK 3<div class="score">0 : 0</div>TK 4</div>
-<div class="match">TK 5<div class="score">0 : 0</div>TK 6</div>
-<div class="match">TK 7<div class="score">0 : 0</div>TK 8</div>
-</div>
-
-<div class="round">
-<h3>8 Besar</h3>
-<div class="match">Pemenang<div class="score">0 : 0</div>TK 9</div>
-<div class="match">Pemenang<div class="score">0 : 0</div>TK 10</div>
-<div class="match">Pemenang<div class="score">0 : 0</div>TK 11</div>
-<div class="match">Pemenang<div class="score">0 : 0</div>TK 12</div>
-</div>
-
-<div class="round">
-<h3>Semifinal</h3>
-<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
-<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
-</div>
-
-<div class="round">
-<h3>Final</h3>
-<div class="match">FINAL<div class="score">0 : 0</div>FINAL</div>
-<div class="match">JUARA 3<div class="score">0 : 0</div>JUARA 3</div>
-</div>
-
-</div>
-</div>
-
-<!-- ================= SD 24 TIM TEMPLATE ================= -->
-<!-- SD 1-2, 3-4, 5-6 STRUKTUR SAMA -->
-<!-- ================= SD 1-2 ================= -->
-<div id="sd12" class="hidden">
-<button class="back" onclick="goHome()">← HOME</button>
-<h2>KATEGORI SD 1–2 – 24 TIM</h2>
-<div class="bracket">
-<div class="round">
-<h3>Babak Awal</h3>
-<div class="match">SD1<div class="score">0 : 0</div>SD2</div>
-<div class="match">SD3<div class="score">0 : 0</div>SD4</div>
-<div class="match">SD5<div class="score">0 : 0</div>SD6</div>
-<div class="match">SD7<div class="score">0 : 0</div>SD8</div>
-<div class="match">SD9<div class="score">0 : 0</div>SD10</div>
-<div class="match">SD11<div class="score">0 : 0</div>SD12</div>
-<div class="match">SD13<div class="score">0 : 0</div>SD14</div>
-<div class="match">SD15<div class="score">0 : 0</div>SD16</div>
-</div>
-
-<div class="round">
-<h3>16 Besar</h3>
-<div class="match">P<div class="score">0 : 0</div>SD17</div>
-<div class="match">P<div class="score">0 : 0</div>SD18</div>
-<div class="match">P<div class="score">0 : 0</div>SD19</div>
-<div class="match">P<div class="score">0 : 0</div>SD20</div>
-<div class="match">P<div class="score">0 : 0</div>SD21</div>
-<div class="match">P<div class="score">0 : 0</div>SD22</div>
-<div class="match">P<div class="score">0 : 0</div>SD23</div>
-<div class="match">P<div class="score">0 : 0</div>SD24</div>
-</div>
-
-<div class="round">
-<h3>8 Besar</h3>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-</div>
-
-<div class="round">
-<h3>Semifinal</h3>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-</div>
-
-<div class="round">
-<h3>Final</h3>
-<div class="match">FINAL<div class="score">0 : 0</div>FINAL</div>
-<div class="match">JUARA 3<div class="score">0 : 0</div>JUARA 3</div>
-</div>
-</div>
-</div>
-
-<!-- ================= SD 3-4 ================= -->
-<div id="sd34" class="hidden">
-<button class="back" onclick="goHome()">← HOME</button>
-<h2>KATEGORI SD 3–4 – 24 TIM</h2>
-<div class="bracket">
-<!-- struktur sama dengan SD 1–2 -->
-<div class="round"><h3>Babak Awal</h3></div>
-<div class="round"><h3>16 Besar</h3></div>
-<div class="round"><h3>8 Besar</h3></div>
-<div class="round"><h3>Semifinal</h3></div>
-<div class="round"><h3>Final</h3></div>
-</div>
-</div>
-
-<!-- ================= SD 5-6 ================= -->
-<div id="sd56" class="hidden">
-<button class="back" onclick="goHome()">← HOME</button>
-<h2>KATEGORI SD 5–6 – 24 TIM</h2>
-<div class="bracket">
-<div class="round"><h3>Babak Awal</h3></div>
-<div class="round"><h3>16 Besar</h3></div>
-<div class="round"><h3>8 Besar</h3></div>
-<div class="round"><h3>Semifinal</h3></div>
-<div class="round"><h3>Final</h3></div>
-</div>
-</div>
-
-<!-- ================= SMP 16 TIM ================= -->
-<div id="smp" class="hidden">
-<button class="back" onclick="goHome()">← HOME</button>
-<h2>KATEGORI SMP – 16 TIM</h2>
-<div class="bracket">
-<div class="round">
-<h3>16 Besar</h3>
-<div class="match">SMP1<div class="score">0 : 0</div>SMP2</div>
-<div class="match">SMP3<div class="score">0 : 0</div>SMP4</div>
-<div class="match">SMP5<div class="score">0 : 0</div>SMP6</div>
-<div class="match">SMP7<div class="score">0 : 0</div>SMP8</div>
-<div class="match">SMP9<div class="score">0 : 0</div>SMP10</div>
-<div class="match">SMP11<div class="score">0 : 0</div>SMP12</div>
-<div class="match">SMP13<div class="score">0 : 0</div>SMP14</div>
-<div class="match">SMP15<div class="score">0 : 0</div>SMP16</div>
-</div>
-
-<div class="round">
-<h3>8 Besar</h3>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-</div>
-
-<div class="round">
-<h3>Semifinal</h3>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-<div class="match">P<div class="score">0 : 0</div>P</div>
-</div>
-
-<div class="round">
-<h3>Final</h3>
-<div class="match">FINAL<div class="score">0 : 0</div>FINAL</div>
-<div class="match">JUARA 3<div class="score">0 : 0</div>JUARA 3</div>
-</div>
-</div>
-</div>
-
-<script>
-function openPage(id){
-  document.getElementById("home").classList.add("hidden");
-  document.getElementById(id).classList.remove("hidden");
-}
-function goHome(){
-  document.querySelectorAll(".hidden").forEach(e=>e.classList.add("hidden"));
-  document.getElementById("home").classList.remove("hidden");
-}
-</script>
 
 </body>
 </html>
