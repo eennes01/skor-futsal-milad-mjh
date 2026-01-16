@@ -14,45 +14,56 @@
             --accent-color: #fbbf24;
         }
 
-        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg-color); color: white; overflow-x: auto; }
+        body { margin: 0; font-family: sans-serif; background: var(--bg-color); color: white; overflow-x: auto; }
         header { background: var(--header-bg); padding: 20px; text-align: center; border-bottom: 2px solid var(--accent-color); }
         .back { margin: 15px; display: inline-block; background: var(--box-bg); color: var(--text-dark); 
-                padding: 8px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; }
+                padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; }
 
-        .bracket { display: flex; padding: 50px; justify-content: center; align-items: stretch; min-width: 1000px; }
+        /* Container Bracket */
+        .bracket {
+            display: flex;
+            padding: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            min-width: 1100px;
+        }
 
-        .round { display: flex; flex-direction: column; justify-content: space-around; width: 200px; }
+        .round {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+            margin: 0;
+        }
 
-        /* Container untuk satu pasang pertandingan */
-        .match-group {
+        /* Styling Kotak Pertandingan */
+        .match-item {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            height: 120px; /* Tinggi standar agar sejajar */
             position: relative;
-            padding: 20px 0;
         }
 
-        /* Kotak Tim */
-        .team-box {
+        .team {
             background: var(--box-bg);
             color: var(--text-dark);
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            border-radius: 5px;
             text-align: center;
             font-weight: bold;
             font-size: 13px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             position: relative;
             z-index: 2;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
         }
 
-        .score { border-top: 1px solid #bdd6cc; margin-top: 5px; padding-top: 5px; font-size: 14px; color: #059669; }
+        .score { border-top: 1px solid #bdd6cc; margin-top: 5px; padding-top: 5px; color: #059669; }
 
-        /* --- SISTEM GARIS ANTI-PUTUS --- */
+        /* --- LOGIKA GARIS PENGHUBUNG (Siku-Siku) --- */
 
         /* Garis horizontal keluar dari kotak */
-        .team-box::after {
+        .team::after {
             content: "";
             position: absolute;
             right: -25px;
@@ -62,8 +73,8 @@
             background: var(--line-color);
         }
 
-        /* Garis vertikal penghubung */
-        .connector {
+        /* Garis vertikal penghubung pasangan */
+        .connect-v {
             position: absolute;
             right: -25px;
             top: 25%;
@@ -72,7 +83,7 @@
         }
 
         /* Garis horizontal masuk ke babak berikutnya */
-        .connector::after {
+        .connect-v::after {
             content: "";
             position: absolute;
             right: -25px;
@@ -82,99 +93,81 @@
             background: var(--line-color);
         }
 
-        /* Garis lurus untuk tim yang tidak punya lawan (Bye) */
-        .bye-line::after {
-            width: 50px !important;
-            right: -50px !important;
+        /* Garis Lurus untuk tim Bye (TK 1, 6, 7, 12) */
+        .bye .team::after {
+            width: 50px;
+            right: -50px;
         }
 
-        /* Khusus Final */
+        /* Penyesuaian khusus untuk Babak 2 dan seterusnya agar garis sejajar */
+        .r2 .match-item { height: 240px; }
+        .r3 .match-item { height: 480px; }
+
         .final-box { background: var(--accent-color) !important; color: #000; border: 2px solid #fff; }
         .final-box::after { display: none; }
 
-        /* Spacer untuk mengatur tinggi agar pas dengan gambar */
-        .spacer { height: 100px; }
+        /* Hilangkan garis pada kolom terakhir */
+        .final-round .team::after { display: none; }
     </style>
 </head>
 <body>
 
-<header><h2>KATEGORI TK – 12 TIM</h2></header>
-<a class="back" href="index.html">← KEMBALI</a>
+<header><h2>KATEGORI TK – 12 TIM (SKUADRON)</h2></header>
+<a class="back" href="index.html">← HOME</a>
 
 <div class="bracket">
     
-    <div class="round">
-        <div class="team-box bye-line">TK 1 <div class="score">0:0</div></div>
-        
-        <div class="match-group">
-            <div class="team-box">TK 2 <div class="score">0:0</div></div>
-            <div class="team-box">TK 3 <div class="score">0:0</div></div>
-            <div class="connector"></div>
+    <div class="round r1">
+        <div class="match-item bye"><div class="team">TK 1<div class="score">0:0</div></div></div>
+        <div class="match-item">
+            <div class="team">TK 2<div class="score">0:0</div></div>
+            <div class="team">TK 3<div class="score">0:0</div></div>
+            <div class="connect-v"></div>
         </div>
-
-        <div class="match-group">
-            <div class="team-box">TK 4 <div class="score">0:0</div></div>
-            <div class="team-box">TK 5 <div class="score">0:0</div></div>
-            <div class="connector"></div>
+        <div class="match-item">
+            <div class="team">TK 4<div class="score">0:0</div></div>
+            <div class="team">TK 5<div class="score">0:0</div></div>
+            <div class="connect-v"></div>
         </div>
-
-        <div class="team-box bye-line">TK 6 <div class="score">0:0</div></div>
-        <div class="team-box bye-line">TK 7 <div class="score">0:0</div></div>
-
-        <div class="match-group">
-            <div class="team-box">TK 8 <div class="score">0:0</div></div>
-            <div class="team-box">TK 9 <div class="score">0:0</div></div>
-            <div class="connector"></div>
+        <div class="match-item bye"><div class="team">TK 6<div class="score">0:0</div></div></div>
+        <div class="match-item bye"><div class="team">TK 7<div class="score">0:0</div></div></div>
+        <div class="match-item">
+            <div class="team">TK 8<div class="score">0:0</div></div>
+            <div class="team">TK 9<div class="score">0:0</div></div>
+            <div class="connect-v"></div>
         </div>
-
-        <div class="match-group">
-            <div class="team-box">TK 10 <div class="score">0:0</div></div>
-            <div class="team-box">TK 11 <div class="score">0:0</div></div>
-            <div class="connector"></div>
+        <div class="match-item">
+            <div class="team">TK 10<div class="score">0:0</div></div>
+            <div class="team">TK 11<div class="score">0:0</div></div>
+            <div class="connect-v"></div>
         </div>
-
-        <div class="team-box bye-line">TK 12 <div class="score">0:0</div></div>
+        <div class="match-item bye"><div class="team">TK 12<div class="score">0:0</div></div></div>
     </div>
 
-    <div class="round">
-        <div class="match-group">
-            <div class="team-box">TK 1 <div class="score">0:0</div></div>
-            <div class="team-box">Pemenang 2/3 <div class="score">0:0</div></div>
-            <div class="connector"></div>
+    <div class="round r2">
+        <div class="match-item">
+            <div class="team">Pemenang TK 1 vs 2/3<div class="score">0:0</div></div>
+            <div class="team">Pemenang 4/5 vs TK 6<div class="score">0:0</div></div>
+            <div class="connect-v"></div>
         </div>
-        <div class="match-group">
-            <div class="team-box">Pemenang 4/5 <div class="score">0:0</div></div>
-            <div class="team-box">TK 6 <div class="score">0:0</div></div>
-            <div class="connector"></div>
-        </div>
-        <div class="match-group">
-            <div class="team-box">TK 7 <div class="score">0:0</div></div>
-            <div class="team-box">Pemenang 8/9 <div class="score">0:0</div></div>
-            <div class="connector"></div>
-        </div>
-        <div class="match-group">
-            <div class="team-box">Pemenang 10/11 <div class="score">0:0</div></div>
-            <div class="team-box">TK 12 <div class="score">0:0</div></div>
-            <div class="connector"></div>
+        <div class="match-item">
+            <div class="team">Pemenang TK 7 vs 8/9<div class="score">0:0</div></div>
+            <div class="team">Pemenang 10/11 vs TK 12<div class="score">0:0</div></div>
+            <div class="connect-v"></div>
         </div>
     </div>
 
-    <div class="round">
-        <div class="match-group">
-            <div class="team-box">Semifinal 1 <div class="score">0:0</div></div>
-            <div class="team-box">Semifinal 2 <div class="score">0:0</div></div>
-            <div class="connector"></div>
-        </div>
-        <div class="match-group">
-            <div class="team-box">Semifinal 3 <div class="score">0:0</div></div>
-            <div class="team-box">Semifinal 4 <div class="score">0:0</div></div>
-            <div class="connector"></div>
+    <div class="round r3">
+        <div class="match-item">
+            <div class="team">SEMIFINAL 1<div class="score">0:0</div></div>
+            <div class="team">SEMIFINAL 2<div class="score">0:0</div></div>
+            <div class="connect-v"></div>
         </div>
     </div>
 
-    <div class="round">
-        <div class="match-group">
-            <div class="team-box final-box">GRAND FINAL <div class="score">0:0</div></div>
+    <div class="round final-round" style="justify-content: center;">
+        <div class="match-item">
+            <div class="team final-box">GRAND FINAL<div class="score">0:0</div></div>
         </div>
     </div>
 
