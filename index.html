@@ -78,4 +78,141 @@ h1{
 
 .bracket{
   display:grid;
-  grid-template-col
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
+  margin-top:10px;
+}
+
+.match{
+  background:white;
+  padding:12px;
+  border-radius:10px;
+  text-align:center;
+  box-shadow:0 3px 8px rgba(0,0,0,.15);
+}
+
+.score{
+  font-size:20px;
+  font-weight:bold;
+  margin:6px 0;
+  color:#14532d;
+}
+
+.podium{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:15px;
+}
+
+.podium div{
+  background:#ecfdf5;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Live Score Turnamen Futsal<br>Milad Lembaga Mujahidin ke - 46</h1>
+</header>
+
+<div class="container">
+
+<!-- HOME -->
+<div id="home">
+<h2 style="color:white">Pilih Kategori</h2>
+<div class="menu">
+  <div class="card" onclick="openPage('tk')">TK</div>
+  <div class="card" onclick="openPage('sd12')">SD 1–2</div>
+  <div class="card" onclick="openPage('sd34')">SD 3–4</div>
+  <div class="card" onclick="openPage('sd56')">SD 5–6</div>
+  <div class="card" onclick="openPage('smp')">SMP</div>
+</div>
+</div>
+
+<!-- TEMPLATE KATEGORI -->
+<div id="tk" class="hidden">
+<button class="back" onclick="goHome()">← Kembali</button>
+<h2 style="color:white">Kategori TK</h2>
+<?php ?>
+</div>
+
+<div id="sd12" class="hidden">
+<button class="back" onclick="goHome()">← Kembali</button>
+<h2 style="color:white">Kategori SD 1–2</h2>
+</div>
+
+<div id="sd34" class="hidden">
+<button class="back" onclick="goHome()">← Kembali</button>
+<h2 style="color:white">Kategori SD 3–4</h2>
+</div>
+
+<div id="sd56" class="hidden">
+<button class="back" onclick="goHome()">← Kembali</button>
+<h2 style="color:white">Kategori SD 5–6</h2>
+</div>
+
+<div id="smp" class="hidden">
+<button class="back" onclick="goHome()">← Kembali</button>
+<h2 style="color:white">Kategori SMP</h2>
+</div>
+
+<!-- CONTOH STRUKTUR PERTANDINGAN -->
+<script>
+function isiKategori(id){
+  document.getElementById(id).innerHTML += `
+  <div class="section">
+    <h3>Semifinal</h3>
+    <div class="bracket">
+      <div class="match"><div>Tim A</div><div class="score">0 : 0</div><div>Tim B</div></div>
+      <div class="match"><div>Tim C</div><div class="score">0 : 0</div><div>Tim D</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Perebutan Juara 3</h3>
+    <div class="bracket">
+      <div class="match"><div>Kalah SF 1</div><div class="score">0 : 0</div><div>Kalah SF 2</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Final</h3>
+    <div class="bracket">
+      <div class="match"><div>Pemenang SF 1</div><div class="score">0 : 0</div><div>Pemenang SF 2</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>Hasil Akhir</h3>
+    <div class="podium">
+      <div>🥇 Juara 1<br>Nama Tim</div>
+      <div>🥈 Juara 2<br>Nama Tim</div>
+      <div>🥉 Juara 3<br>Nama Tim</div>
+      <div>🏅 Juara 4<br>Nama Tim</div>
+    </div>
+  </div>
+  `;
+}
+
+["tk","sd12","sd34","sd56","smp"].forEach(isiKategori);
+
+function openPage(id){
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function goHome(){
+  document.querySelectorAll(".container > div").forEach(d=>d.classList.add("hidden"));
+  document.getElementById("home").classList.remove("hidden");
+}
+</script>
+
+</div>
+
+</body>
+</html>
