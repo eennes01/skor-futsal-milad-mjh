@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Futsal Tournament</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f6f8; }
+    header { background: #1e293b; color: #fff; padding: 16px; text-align: center; }
+    .container { padding: 20px; }
+    .hidden { display: none; }
+    .menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .card { background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; text-align: center; font-size: 18px; }
+    .card:hover { background: #e2e8f0; }
+    .back-btn { margin-bottom: 16px; padding: 8px 14px; border: none; border-radius: 8px; background: #2563eb; color: #fff; cursor: pointer; }
+    .bracket { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .match { background: #fff; padding: 10px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Live Hasil Pertandingan Futsal</h1>
+</header>
+
+<div class="container">
+
+  <!-- TEMPLATE UTAMA -->
+  <div id="home">
+    <h2>Pilih Kategori</h2>
+    <div class="menu">
+      <div class="card" onclick="openCategory('tk')">TK</div>
+      <div class="card" onclick="openCategory('sd12')">SD 1–2</div>
+      <div class="card" onclick="openCategory('sd34')">SD 3–4</div>
+      <div class="card" onclick="openCategory('sd56')">SD 5–6</div>
+      <div class="card" onclick="openCategory('smp')">SMP</div>
+    </div>
+  </div>
+
+  <!-- TEMPLATE TK (12 TIM) -->
+  <div id="tk" class="hidden">
+    <button class="back-btn" onclick="goHome()">Kembali ke Home</button>
+    <h2>Kategori TK (12 Tim - Sistem Gugur)</h2>
+    <div class="bracket" id="tk-bracket"></div>
+  </div>
+
+  <!-- TEMPLATE SD 1-2 (24 TIM) -->
+  <div id="sd12" class="hidden">
+    <button class="back-btn" onclick="goHome()">Kembali ke Home</button>
+    <h2>Kategori SD 1–2 (24 Tim - Sistem Gugur)</h2>
+    <div class="bracket" id="sd12-bracket"></div>
+  </div>
+
+  <!-- TEMPLATE SD 3-4 (24 TIM) -->
+  <div id="sd34" class="hidden">
+    <button class="back-btn" onclick="goHome()">Kembali ke Home</button>
+    <h2>Kategori SD 3–4 (24 Tim - Sistem Gugur)</h2>
+    <div class="bracket" id="sd34-bracket"></div>
+  </div>
+
+  <!-- TEMPLATE SD 5-6 (24 TIM) -->
+  <div id="sd56" class="hidden">
+    <button class="back-btn" onclick="goHome()">Kembali ke Home</button>
+    <h2>Kategori SD 5–6 (24 Tim - Sistem Gugur)</h2>
+    <div class="bracket" id="sd56-bracket"></div>
+  </div>
+
+  <!-- TEMPLATE SMP (16 TIM) -->
+  <div id="smp" class="hidden">
+    <button class="back-btn" onclick="goHome()">Kembali ke Home</button>
+    <h2>Kategori SMP (16 Tim - Sistem Gugur)</h2>
+    <div class="bracket" id="smp-bracket"></div>
+  </div>
+
+</div>
+
+<script>
+  function openCategory(id) {
+    document.getElementById('home').classList.add('hidden');
+    document.getElementById(id).classList.remove('hidden');
+  }
+
+  function goHome() {
+    document.querySelectorAll('.container > div').forEach(div => div.classList.add('hidden'));
+    document.getElementById('home').classList.remove('hidden');
+  }
+
+  function generateBracket(containerId, totalTeams) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    const totalMatches = totalTeams / 2;
+    for (let i = 1; i <= totalMatches; i++) {
+      const match = document.createElement('div');
+      match.className = 'match';
+      match.innerHTML = `
+        <div>Tim ${i * 2 - 1}</div>
+        <strong>VS</strong>
+        <div>Tim ${i * 2}</div>
+        <div>Skor: 0 - 0</div>
+      `;
+      container.appendChild(match);
+    }
+  }
+
+  generateBracket('tk-bracket', 12);
+  generateBracket('sd12-bracket', 24);
+  generateBracket('sd34-bracket', 24);
+  generateBracket('sd56-bracket', 24);
+  generateBracket('smp-bracket', 16);
+</script>
+
+</body>
+</html>
+
