@@ -2,114 +2,113 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Live Score Turnamen Futsal Milad Lembaga Mujahidin ke - 46</title>
+<title>Live Score Turnamen Futsal</title>
 
 <style>
 body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
-  background:#14532d;
+  background:#064e3b;
+  color:white;
 }
 
 header{
-  background:#052e16;
-  color:white;
+  background:#022c22;
   text-align:center;
   padding:20px;
 }
 
 h1{
   margin:0;
-  font-size:26px;
+  font-size:38px;
+  letter-spacing:1px;
 }
 
-.container{
-  padding:20px;
-}
+.container{padding:20px}
+.hidden{display:none}
 
-.hidden{
-  display:none;
-}
-
+/* HOME */
 .menu{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:20px;
-  margin-top:30px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:25px;
+  margin-top:40px;
 }
 
 .card{
-  background:white;
-  padding:25px;
-  border-radius:16px;
+  background:#ecfdf5;
+  color:#022c22;
+  padding:35px;
+  border-radius:20px;
   text-align:center;
-  font-size:18px;
+  font-size:28px;
   font-weight:bold;
   cursor:pointer;
-  box-shadow:0 6px 12px rgba(0,0,0,.2);
 }
 
-.card:hover{
-  background:#dcfce7;
-}
-
+/* BUTTON */
 .back{
-  background:#052e16;
-  color:white;
+  background:#ecfdf5;
+  color:#022c22;
   border:none;
-  padding:10px 16px;
-  border-radius:10px;
-  cursor:pointer;
+  padding:14px 22px;
+  border-radius:14px;
+  font-size:20px;
   font-weight:bold;
-  margin-bottom:15px;
+  cursor:pointer;
+  margin-bottom:20px;
 }
 
-.section{
-  margin-bottom:25px;
+/* ROUND */
+.round{
+  margin-bottom:30px;
 }
 
-.section h3{
-  background:#052e16;
-  color:white;
-  padding:8px;
-  border-radius:8px;
-  font-size:16px;
+.round h3{
+  background:#022c22;
+  padding:12px;
+  border-radius:10px;
+  font-size:26px;
+  text-align:center;
 }
 
 .bracket{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:15px;
-  margin-top:10px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  margin-top:15px;
 }
 
 .match{
-  background:white;
-  padding:12px;
-  border-radius:10px;
+  background:#ecfdf5;
+  color:#022c22;
+  padding:16px;
+  border-radius:14px;
   text-align:center;
-  box-shadow:0 3px 8px rgba(0,0,0,.15);
+  font-size:22px;
+  font-weight:bold;
 }
 
 .score{
-  font-size:20px;
-  font-weight:bold;
-  margin:6px 0;
-  color:#14532d;
+  font-size:32px;
+  margin:8px 0;
 }
 
+/* PODIUM */
 .podium{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+  margin-top:20px;
 }
 
 .podium div{
-  background:#ecfdf5;
-  padding:15px;
-  border-radius:12px;
+  background:#facc15;
+  color:#422006;
+  padding:20px;
+  border-radius:16px;
+  font-size:24px;
   text-align:center;
-  font-weight:bold;
 }
 </style>
 </head>
@@ -117,102 +116,130 @@ h1{
 <body>
 
 <header>
-<h1>Live Score Turnamen Futsal<br>Milad Lembaga Mujahidin ke - 46</h1>
+<h1>LIVE SCORE TURNAMEN FUTSAL<br>MILAD LEMBAGA MUJAHIDIN KE-46</h1>
 </header>
 
 <div class="container">
 
 <!-- HOME -->
 <div id="home">
-<h2 style="color:white">Pilih Kategori</h2>
 <div class="menu">
-  <div class="card" onclick="openPage('tk')">TK</div>
-  <div class="card" onclick="openPage('sd12')">SD 1–2</div>
-  <div class="card" onclick="openPage('sd34')">SD 3–4</div>
-  <div class="card" onclick="openPage('sd56')">SD 5–6</div>
-  <div class="card" onclick="openPage('smp')">SMP</div>
+  <div class="card" onclick="openPage('tk')">TK<br>12 TIM</div>
+  <div class="card" onclick="openPage('sd12')">SD 1–2<br>24 TIM</div>
+  <div class="card" onclick="openPage('sd34')">SD 3–4<br>24 TIM</div>
+  <div class="card" onclick="openPage('sd56')">SD 5–6<br>24 TIM</div>
+  <div class="card" onclick="openPage('smp')">SMP<br>16 TIM</div>
 </div>
 </div>
 
-<!-- TEMPLATE KATEGORI -->
-<div id="tk" class="hidden">
-<button class="back" onclick="goHome()">← Kembali</button>
-<h2 style="color:white">Kategori TK</h2>
-<?php ?>
-</div>
-
-<div id="sd12" class="hidden">
-<button class="back" onclick="goHome()">← Kembali</button>
-<h2 style="color:white">Kategori SD 1–2</h2>
-</div>
-
-<div id="sd34" class="hidden">
-<button class="back" onclick="goHome()">← Kembali</button>
-<h2 style="color:white">Kategori SD 3–4</h2>
-</div>
-
-<div id="sd56" class="hidden">
-<button class="back" onclick="goHome()">← Kembali</button>
-<h2 style="color:white">Kategori SD 5–6</h2>
-</div>
-
-<div id="smp" class="hidden">
-<button class="back" onclick="goHome()">← Kembali</button>
-<h2 style="color:white">Kategori SMP</h2>
-</div>
-
-<!-- CONTOH STRUKTUR PERTANDINGAN -->
+<!-- ================= TEMPLATE FUNCTION ================= -->
 <script>
-function isiKategori(id){
-  document.getElementById(id).innerHTML += `
-  <div class="section">
-    <h3>Semifinal</h3>
-    <div class="bracket">
-      <div class="match"><div>Tim A</div><div class="score">0 : 0</div><div>Tim B</div></div>
-      <div class="match"><div>Tim C</div><div class="score">0 : 0</div><div>Tim D</div></div>
-    </div>
-  </div>
+function kategori(id, title, awal){
+document.write(`
+<div id="${id}" class="hidden">
+<button class="back" onclick="goHome()">← HOME</button>
+<h2 style="text-align:center;font-size:32px">${title}</h2>
 
-  <div class="section">
-    <h3>Perebutan Juara 3</h3>
-    <div class="bracket">
-      <div class="match"><div>Kalah SF 1</div><div class="score">0 : 0</div><div>Kalah SF 2</div></div>
-    </div>
-  </div>
+<div class="round">
+<h3>Babak Awal</h3>
+<div class="bracket">${awal}</div>
+</div>
 
-  <div class="section">
-    <h3>Final</h3>
-    <div class="bracket">
-      <div class="match"><div>Pemenang SF 1</div><div class="score">0 : 0</div><div>Pemenang SF 2</div></div>
-    </div>
-  </div>
+<div class="round">
+<h3>Perempat Final</h3>
+<div class="bracket">
+<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
+<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
+</div>
+</div>
 
-  <div class="section">
-    <h3>Hasil Akhir</h3>
-    <div class="podium">
-      <div>🥇 Juara 1<br>Nama Tim</div>
-      <div>🥈 Juara 2<br>Nama Tim</div>
-      <div>🥉 Juara 3<br>Nama Tim</div>
-      <div>🏅 Juara 4<br>Nama Tim</div>
-    </div>
-  </div>
-  `;
+<div class="round">
+<h3>Semifinal</h3>
+<div class="bracket">
+<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
+</div>
+</div>
+
+<div class="round">
+<h3>Perebutan Juara 3</h3>
+<div class="bracket">
+<div class="match">Kalah SF<div class="score">0 : 0</div>Kalah SF</div>
+</div>
+</div>
+
+<div class="round">
+<h3>FINAL</h3>
+<div class="bracket">
+<div class="match">Finalis<div class="score">0 : 0</div>Finalis</div>
+</div>
+</div>
+
+<div class="round">
+<h3>JUARA</h3>
+<div class="podium">
+<div>🥇 JUARA 1</div>
+<div>🥈 JUARA 2</div>
+<div>🥉 JUARA 3</div>
+<div>🏅 JUARA 4</div>
+</div>
+</div>
+</div>
+`);
 }
+</script>
 
-["tk","sd12","sd34","sd56","smp"].forEach(isiKategori);
+<script>
+kategori("tk","KATEGORI TK (12 TIM)",
+`
+<div class="match">Tim 1<div class="score">0 : 0</div>Tim 2</div>
+<div class="match">Tim 3<div class="score">0 : 0</div>Tim 4</div>
+<div class="match">Tim 5<div class="score">0 : 0</div>Tim 6</div>
+<div class="match">Tim 7<div class="score">0 : 0</div>Tim 8</div>
+<div class="match">Tim 9<div class="score">0 : 0</div>Tim 10</div>
+<div class="match">Tim 11<div class="score">0 : 0</div>Tim 12</div>
+`);
 
+kategori("sd12","KATEGORI SD 1–2 (24 TIM)",
+`
+<div class="match">Tim 1<div class="score">0 : 0</div>Tim 2</div>
+<div class="match">Tim 3<div class="score">0 : 0</div>Tim 4</div>
+<div class="match">Tim 5<div class="score">0 : 0</div>Tim 6</div>
+<div class="match">Tim 7<div class="score">0 : 0</div>Tim 8</div>
+`);
+
+kategori("sd34","KATEGORI SD 3–4 (24 TIM)",
+`
+<div class="match">Tim 1<div class="score">0 : 0</div>Tim 2</div>
+<div class="match">Tim 3<div class="score">0 : 0</div>Tim 4</div>
+`);
+
+kategori("sd56","KATEGORI SD 5–6 (24 TIM)",
+`
+<div class="match">Tim 1<div class="score">0 : 0</div>Tim 2</div>
+`);
+
+kategori("smp","KATEGORI SMP (16 TIM)",
+`
+<div class="match">Tim 1<div class="score">0 : 0</div>Tim 2</div>
+<div class="match">Tim 3<div class="score">0 : 0</div>Tim 4</div>
+<div class="match">Tim 5<div class="score">0 : 0</div>Tim 6</div>
+<div class="match">Tim 7<div class="score">0 : 0</div>Tim 8</div>
+`);
+</script>
+
+</div>
+
+<script>
 function openPage(id){
   document.getElementById("home").classList.add("hidden");
   document.getElementById(id).classList.remove("hidden");
 }
 
 function goHome(){
-  document.querySelectorAll(".container > div").forEach(d=>d.classList.add("hidden"));
+  document.querySelectorAll(".container > div").forEach(e=>e.classList.add("hidden"));
   document.getElementById("home").classList.remove("hidden");
 }
 </script>
-
-</div>
 
 </body>
 </html>
