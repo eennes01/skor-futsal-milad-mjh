@@ -10,29 +10,18 @@
             --box: #ecfdf5;
             --text: #022c22;
             --gold: #fbbf24;
-            --h-unit: 50px; /* Tinggi dasar satu sel */
+            --h: 50px; /* Tinggi baris tetap */
         }
 
-        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: white; overflow-x: auto; }
+        body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: white; overflow-x: auto; }
         header { background: #022c22; padding: 15px; text-align: center; border-bottom: 3px solid var(--gold); }
-        .back { margin: 10px; display: inline-block; background: var(--box); color: var(--text); padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 13px; }
+        .back { margin: 10px; display: inline-block; background: var(--box); color: var(--text); padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; }
 
-        .bracket-container {
-            display: flex;
-            padding: 50px;
-            justify-content: center;
-            min-width: 1100px;
-        }
+        .bracket { display: flex; padding: 40px; justify-content: center; min-width: 1100px; }
+        .column { display: flex; flex-direction: column; width: 180px; }
 
-        .column {
-            display: flex;
-            flex-direction: column;
-            width: 180px;
-        }
-
-        /* Sel Kontainer Utama */
-        .slot {
-            height: var(--h-unit);
+        .cell {
+            height: var(--h);
             display: flex;
             align-items: center;
             position: relative;
@@ -47,14 +36,11 @@
             text-align: center;
             font-weight: bold;
             font-size: 11px;
-            z-index: 10;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-            position: relative;
+            z-index: 5;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* --- LOGIKA GARIS KRUSIAL --- */
-        
-        /* Garis Keluar (Kanan) */
+        /* Garis keluar ke kanan */
         .out::after {
             content: "";
             position: absolute;
@@ -65,7 +51,7 @@
             background: var(--line);
         }
 
-        /* Garis Masuk (Kiri) */
+        /* Garis masuk dari kiri */
         .in::before {
             content: "";
             position: absolute;
@@ -76,8 +62,8 @@
             background: var(--line);
         }
 
-        /* Garis Vertikal (Penghubung Siku) */
-        .v-connect {
+        /* Garis vertikal */
+        .v-line {
             position: absolute;
             right: -30px;
             width: 2px;
@@ -85,7 +71,7 @@
         }
 
         .gap { width: 60px; }
-        .final-area { background: var(--gold) !important; color: #000; border: 2px solid #fff; }
+        .final-box { background: var(--gold) !important; }
     </style>
 </head>
 <body>
@@ -93,51 +79,47 @@
 <header><h2>BAGAN TURNAMEN TK – 12 TIM</h2></header>
 <a class="back" href="index.html">← HOME</a>
 
-<div class="bracket-container">
-    
+<div class="bracket">
     <div class="column">
-        <div class="slot out"><div class="team">TK 1</div></div>
-        <div class="slot out"><div class="team">TK 2</div></div>
-        <div class="slot out">
+        <div class="cell out"><div class="team">TK 1</div></div>
+        <div class="cell out"><div class="team">TK 2</div></div>
+        <div class="cell out">
             <div class="team">TK 3</div>
-            <div class="v-connect" style="height: 50px; top: -25px;"></div>
+            <div class="v-line" style="height: 50px; top: -25px;"></div>
         </div>
-        <div class="slot out"><div class="team">TK 4</div></div>
-        <div class="slot out">
+        <div class="cell out"><div class="team">TK 4</div></div>
+        <div class="cell out">
             <div class="team">TK 5</div>
-            <div class="v-connect" style="height: 50px; top: -25px;"></div>
+            <div class="v-line" style="height: 50px; top: -25px;"></div>
         </div>
-        <div class="slot out"><div class="team">TK 6</div></div>
-        <div class="slot out"><div class="team">TK 7</div></div>
-        <div class="slot out"><div class="team">TK 8</div></div>
-        <div class="slot out">
+        <div class="cell out"><div class="team">TK 6</div></div>
+        <div class="cell out"><div class="team">TK 7</div></div>
+        <div class="cell out"><div class="team">TK 8</div></div>
+        <div class="cell out">
             <div class="team">TK 9</div>
-            <div class="v-connect" style="height: 50px; top: -25px;"></div>
+            <div class="v-line" style="height: 50px; top: -25px;"></div>
         </div>
-        <div class="slot out"><div class="team">TK 10</div></div>
-        <div class="slot out">
+        <div class="cell out"><div class="team">TK 10</div></div>
+        <div class="cell out">
             <div class="team">TK 11</div>
-            <div class="v-connect" style="height: 50px; top: -25px;"></div>
+            <div class="v-line" style="height: 50px; top: -25px;"></div>
         </div>
-        <div class="slot out"><div class="team">TK 12</div></div>
+        <div class="cell out"><div class="team">TK 12</div></div>
     </div>
 
     <div class="gap"></div>
 
     <div class="column">
-        <div class="slot" style="height: 25px;"></div>
-        <div class="slot in out"><div class="team">TK 1 vs W(2-3)</div></div>
-        <div class="slot" style="height: 50px;"></div>
-        <div class="slot in out">
-            <div class="team">W(4-5) vs TK 6</div>
-            <div class="v-connect" style="height: 100px; top: -50px;"></div>
+        <div class="cell" style="height: 25px;"></div> <div class="cell in out"><div class="team">Match 1</div></div> 
+        <div class="cell" style="height: 50px;"></div> <div class="cell in out">
+            <div class="team">Match 2</div>
+            <div class="v-line" style="height: 100px; top: -50px;"></div>
         </div>
-        <div class="slot" style="height: 100px;"></div>
-        <div class="slot in out"><div class="team">TK 7 vs W(8-9)</div></div>
-        <div class="slot" style="height: 50px;"></div>
-        <div class="slot in out">
-            <div class="team">W(10-11) vs TK 12</div>
-            <div class="v-connect" style="height: 100px; top: -50px;"></div>
+        <div class="cell" style="height: 100px;"></div> <div class="cell in out"><div class="team">Match 3</div></div>
+        <div class="cell" style="height: 50px;"></div>
+        <div class="cell in out">
+            <div class="team">Match 4</div>
+            <div class="v-line" style="height: 100px; top: -50px;"></div>
         </div>
     </div>
 
@@ -145,21 +127,20 @@
 
     <div class="column">
         <div class="slot" style="height: 75px;"></div>
-        <div class="slot in out"><div class="team">SEMIFINAL 1</div></div>
-        <div class="slot" style="height: 200px;"></div>
-        <div class="slot in out">
+        <div class="cell in out"><div class="team">SEMIFINAL 1</div></div>
+        <div class="cell" style="height: 200px;"></div>
+        <div class="cell in out">
             <div class="team">SEMIFINAL 2</div>
-            <div class="v-connect" style="height: 250px; top: -125px;"></div>
+            <div class="v-line" style="height: 250px; top: -125px;"></div>
         </div>
     </div>
 
     <div class="gap"></div>
 
     <div class="column">
-        <div class="slot" style="height: 200px;"></div>
-        <div class="slot in"><div class="team final-area">GRAND FINAL</div></div>
+        <div class="cell" style="height: 200px;"></div>
+        <div class="cell in"><div class="team final-box">GRAND FINAL</div></div>
     </div>
-
 </div>
 
 </body>
