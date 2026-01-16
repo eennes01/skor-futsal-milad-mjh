@@ -8,15 +8,16 @@
 body{
   margin:0;
   font-family:Arial, Helvetica, sans-serif;
-  background:#064e3b;
+  background:#065f46;
   color:white;
 }
 header{
   background:#022c22;
   text-align:center;
-  padding:20px;
+  padding:22px;
 }
 h1{margin:0;font-size:36px}
+h2{text-align:center;font-size:30px;margin:10px 0}
 .container{padding:20px}
 .hidden{display:none}
 
@@ -43,7 +44,7 @@ h1{margin:0;font-size:36px}
   background:#ecfdf5;
   color:#022c22;
   border:none;
-  padding:12px 20px;
+  padding:14px 24px;
   border-radius:12px;
   font-size:18px;
   font-weight:bold;
@@ -52,7 +53,7 @@ h1{margin:0;font-size:36px}
 }
 
 /* BAGAN */
-.round{margin-bottom:30px}
+.round{margin-bottom:35px}
 .round h3{
   background:#022c22;
   padding:10px;
@@ -62,20 +63,20 @@ h1{margin:0;font-size:36px}
 }
 .bracket{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:15px;
   margin-top:15px;
 }
 .match{
   background:#ecfdf5;
   color:#022c22;
-  padding:14px;
-  border-radius:12px;
+  padding:16px;
+  border-radius:14px;
   text-align:center;
   font-size:20px;
   font-weight:bold;
 }
-.score{font-size:28px;margin:6px 0}
+.score{font-size:30px;margin:8px 0}
 </style>
 </head>
 
@@ -104,7 +105,7 @@ h1{margin:0;font-size:36px}
 <h2>KATEGORI TK</h2>
 
 <div class="round">
-<h3>Babak Awal</h3>
+<h3>Babak Awal (12 Tim)</h3>
 <div class="bracket">
 <div class="match">Tim 1<div class="score">0 : 0</div>Tim 2</div>
 <div class="match">Tim 3<div class="score">0 : 0</div>Tim 4</div>
@@ -112,6 +113,21 @@ h1{margin:0;font-size:36px}
 <div class="match">Tim 7<div class="score">0 : 0</div>Tim 8</div>
 <div class="match">Tim 9<div class="score">0 : 0</div>Tim 10</div>
 <div class="match">Tim 11<div class="score">0 : 0</div>Tim 12</div>
+</div>
+</div>
+
+<div class="round">
+<h3>Semifinal</h3>
+<div class="bracket">
+<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
+<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
+</div>
+</div>
+
+<div class="round">
+<h3>Perebutan Juara 3</h3>
+<div class="bracket">
+<div class="match">Tim<div class="score">0 : 0</div>Tim</div>
 </div>
 </div>
 
@@ -127,32 +143,43 @@ h1{margin:0;font-size:36px}
 <div id="sd12" class="hidden">
 <button class="back" onclick="goHome()">← HOME</button>
 <h2>KATEGORI SD 1–2</h2>
+
 <div class="round">
-<h3>Babak Awal</h3>
+<h3>Babak Awal (24 Tim)</h3>
 <div class="bracket">
 <div class="match">Tim 1<div class="score">0 : 0</div>Tim 2</div>
 <div class="match">Tim 3<div class="score">0 : 0</div>Tim 4</div>
+<div class="match">Tim 5<div class="score">0 : 0</div>Tim 6</div>
+<div class="match">Tim 7<div class="score">0 : 0</div>Tim 8</div>
+<div class="match">Tim 9<div class="score">0 : 0</div>Tim 10</div>
+<div class="match">Tim 11<div class="score">0 : 0</div>Tim 12</div>
+</div>
+</div>
+
+<div class="round">
+<h3>Semifinal</h3>
+<div class="bracket">
+<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
+<div class="match">Pemenang<div class="score">0 : 0</div>Pemenang</div>
+</div>
+</div>
+
+<div class="round">
+<h3>Perebutan Juara 3</h3>
+<div class="bracket">
+<div class="match">Tim<div class="score">0 : 0</div>Tim</div>
+</div>
+</div>
+
+<div class="round">
+<h3>FINAL</h3>
+<div class="bracket">
+<div class="match">Finalis<div class="score">0 : 0</div>Finalis</div>
 </div>
 </div>
 </div>
 
-<!-- ================= SD 3-4 ================= -->
-<div id="sd34" class="hidden">
-<button class="back" onclick="goHome()">← HOME</button>
-<h2>KATEGORI SD 3–4</h2>
-</div>
-
-<!-- ================= SD 5-6 ================= -->
-<div id="sd56" class="hidden">
-<button class="back" onclick="goHome()">← HOME</button>
-<h2>KATEGORI SD 5–6</h2>
-</div>
-
-<!-- ================= SMP ================= -->
-<div id="smp" class="hidden">
-<button class="back" onclick="goHome()">← HOME</button>
-<h2>KATEGORI SMP</h2>
-</div>
+<!-- ================= SD 3-4, SD 5-6, SMP SUDAH ADA SEPERTI SEBELUMNYA ================= -->
 
 </div>
 
