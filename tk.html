@@ -14,59 +14,78 @@
             --accent-color: #fbbf24;
         }
 
-        body { margin: 0; font-family: sans-serif; background: var(--bg-color); color: white; }
+        body { margin: 0; font-family: sans-serif; background: var(--bg-color); color: white; overflow-x: auto; }
         header { background: var(--header-bg); padding: 20px; text-align: center; }
         .back { margin: 15px; display: inline-block; background: var(--box-bg); color: var(--text-dark); 
                 padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; }
 
-        .bracket-wrapper {
+        /* Container Utama */
+        .bracket-container {
             display: flex;
-            padding: 40px;
+            padding: 50px;
             justify-content: center;
-            min-width: max-content;
+            align-items: center;
+            min-width: 1000px;
         }
 
+        /* Kolom Setiap Babak */
         .round {
             display: flex;
             flex-direction: column;
-            width: 180px;
+            justify-content: space-around;
+            width: 200px;
         }
 
-        /* Container untuk grup pertandingan agar garis menyatu */
-        .match-group {
+        /* Pembungkus pertandingan untuk mengatur garis */
+        .match-pair {
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-            flex-grow: 1;
+            justify-content: center;
             position: relative;
+            flex-grow: 1;
+            padding: 0 20px;
         }
 
+        /* Kotak Skor */
         .match-box {
             background: var(--box-bg);
             color: var(--text-dark);
-            padding: 10px;
+            padding: 8px;
             margin: 10px 0;
             border-radius: 5px;
             text-align: center;
             font-weight: bold;
-            font-size: 13px;
+            font-size: 12px;
             position: relative;
-            z-index: 2;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            z-index: 5;
         }
 
-        .score { border-top: 1px solid #ccc; margin-top: 5px; padding-top: 5px; color: #059669; }
+        .score { border-top: 1px solid #bdd6cc; margin-top: 4px; padding-top: 4px; color: #059669; }
 
-        /* CSS Garis Penghubung Sesuai Gambar */
-        .connect {
+        /* --- LOGIKA GARIS PENGHUBUNG (Siku-Siku) --- */
+        
+        /* Garis horizontal keluar dari kotak */
+        .match-box::after {
+            content: "";
             position: absolute;
-            right: -20px;
+            right: -22px;
+            top: 50%;
             width: 20px;
+            border-top: 2px solid var(--line-color);
+        }
+
+        /* Garis vertikal penghubung antar dua kotak */
+        .connector {
+            position: absolute;
+            right: -22px;
+            top: 25%;
+            bottom: 25%;
             border-right: 2px solid var(--line-color);
         }
 
-        /* Garis keluar dari kotak menuju garis vertikal */
-        .match-box::after {
+        /* Garis masuk ke babak berikutnya */
+        .connector::after {
             content: "";
             position: absolute;
             right: -20px;
@@ -75,23 +94,17 @@
             border-top: 2px solid var(--line-color);
         }
 
-        /* Logika Tinggi Garis Penghubung Babak 1 ke 2 */
-        .r1-g1 { height: 45px; top: 75px; } /* Menghubungkan TK 2 & 3 */
-        .r1-g2 { height: 45px; top: 228px; } /* Menghubungkan TK 4 & 5 */
-        .r1-g3 { height: 45px; top: 405px; } /* Menghubungkan TK 8 & 9 */
-        .r1-g4 { height: 45px; top: 558px; } /* Menghubungkan TK 10 & 11 */
+        /* Penyesuaian khusus tinggi garis agar persis gambar */
+        .round-1 { height: 700px; }
+        .round-2 { height: 700px; }
+        .round-3 { height: 700px; }
 
-        /* Logika Tinggi Garis Babak 2 ke Semifinal */
-        .r2-g1 { height: 110px; top: 60px; }
-        .r2-g2 { height: 110px; top: 388px; }
+        /* Menghilangkan garis pada babak Final */
+        .final-round .match-box::after, .final-round .connector {
+            display: none;
+        }
 
-        /* Garis ke Final */
-        .r3-g1 { height: 325px; top: 115px; }
-
-        /* Jarak antar kolom */
-        .spacer { width: 40px; }
-
-        .final-area { background: var(--accent-color) !important; }
+        .gold { background: var(--accent-color) !important; border: 2px solid #fff; }
     </style>
 </head>
 <body>
@@ -99,69 +112,66 @@
 <header><h2>KATEGORI TK – 12 TIM</h2></header>
 <a class="back" href="index.html">← HOME</a>
 
-<div class="bracket-wrapper">
+<div class="bracket-container">
     
-    <div class="round">
-        <div class="match-group">
-            <div style="height: 50px;"></div> <div class="match-box">TK 2 <div class="score">0:0</div></div>
+    <div class="round round-1">
+        <div style="height: 100px;"></div> <div class="match-pair">
+            <div class="match-box">TK 2 <div class="score">0:0</div></div>
             <div class="match-box">TK 3 <div class="score">0:0</div></div>
-            <div class="connect r1-g1"></div>
-            
-            <div style="height: 20px;"></div>
-            
+            <div class="connector"></div>
+        </div>
+        <div class="match-pair">
             <div class="match-box">TK 4 <div class="score">0:0</div></div>
             <div class="match-box">TK 5 <div class="score">0:0</div></div>
-            <div class="connect r1-g2"></div>
-            <div style="height: 50px;"></div> <div style="height: 50px;"></div> <div class="match-box">TK 8 <div class="score">0:0</div></div>
+            <div class="connector"></div>
+        </div>
+        <div style="height: 30px;"></div>
+        <div class="match-pair">
+            <div class="match-box">TK 8 <div class="score">0:0</div></div>
             <div class="match-box">TK 9 <div class="score">0:0</div></div>
-            <div class="connect r1-g3"></div>
-
-            <div style="height: 20px;"></div>
-
+            <div class="connector"></div>
+        </div>
+        <div class="match-pair">
             <div class="match-box">TK 10 <div class="score">0:0</div></div>
             <div class="match-box">TK 11 <div class="score">0:0</div></div>
-            <div class="connect r1-g4"></div>
-            <div style="height: 50px;"></div> </div>
-    </div>
+            <div class="connector"></div>
+        </div>
+        <div style="height: 100px;"></div> </div>
 
-    <div class="spacer"></div>
-
-    <div class="round">
-        <div class="match-group">
+    <div class="round round-2">
+        <div class="match-pair">
             <div class="match-box">TK 1 <div class="score">0:0</div></div>
             <div class="match-box">Pemenang 2/3 <div class="score">0:0</div></div>
-            <div class="connect r2-g1"></div>
-
+            <div class="connector"></div>
+        </div>
+        <div class="match-pair">
             <div class="match-box">Pemenang 4/5 <div class="score">0:0</div></div>
             <div class="match-box">TK 6 <div class="score">0:0</div></div>
-
+            <div class="connector"></div>
+        </div>
+        <div class="match-pair">
             <div class="match-box">TK 7 <div class="score">0:0</div></div>
             <div class="match-box">Pemenang 8/9 <div class="score">0:0</div></div>
-            <div class="connect r2-g2"></div>
-
+            <div class="connector"></div>
+        </div>
+        <div class="match-pair">
             <div class="match-box">Pemenang 10/11 <div class="score">0:0</div></div>
             <div class="match-box">TK 12 <div class="score">0:0</div></div>
+            <div class="connector"></div>
         </div>
     </div>
 
-    <div class="spacer"></div>
-
-    <div class="round">
-        <div class="match-group">
-            <div style="height: 45px;"></div>
+    <div class="round round-3">
+        <div class="match-pair">
             <div class="match-box">SEMIFINAL 1 <div class="score">0:0</div></div>
-            <div class="connect r3-g1"></div>
-            <div style="height: 180px;"></div>
             <div class="match-box">SEMIFINAL 2 <div class="score">0:0</div></div>
-            <div style="height: 45px;"></div>
+            <div class="connector"></div>
         </div>
     </div>
 
-    <div class="spacer"></div>
-
-    <div class="round">
-        <div class="match-group">
-            <div class="match-box final-area">FINAL <div class="score">0:0</div></div>
+    <div class="round final-round">
+        <div class="match-pair">
+            <div class="match-box gold">FINAL <div class="score">0:0</div></div>
         </div>
     </div>
 
