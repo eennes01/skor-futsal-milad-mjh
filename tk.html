@@ -10,7 +10,7 @@
             --box: #ecfdf5;
             --text: #022c22;
             --gold: #fbbf24;
-            --h: 50px; /* Tinggi baris tetap */
+            --h: 50px; /* Tinggi baris patokan */
         }
 
         body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: white; overflow-x: auto; }
@@ -40,7 +40,7 @@
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
         }
 
-        /* Garis keluar ke kanan */
+        /* Garis horizontal keluar ke kanan */
         .out::after {
             content: "";
             position: absolute;
@@ -51,7 +51,7 @@
             background: var(--line);
         }
 
-        /* Garis masuk dari kiri */
+        /* Garis horizontal masuk dari kiri */
         .in::before {
             content: "";
             position: absolute;
@@ -62,7 +62,7 @@
             background: var(--line);
         }
 
-        /* Garis vertikal */
+        /* Garis vertikal penghubung */
         .v-line {
             position: absolute;
             right: -30px;
@@ -71,7 +71,7 @@
         }
 
         .gap { width: 60px; }
-        .final-box { background: var(--gold) !important; }
+        .gold-box { background: var(--gold) !important; }
     </style>
 </head>
 <body>
@@ -81,28 +81,22 @@
 
 <div class="bracket">
     <div class="column">
-        <div class="cell out"><div class="team">TK 1</div></div>
-        <div class="cell out"><div class="team">TK 2</div></div>
-        <div class="cell out">
+        <div class="cell out"><div class="team">TK 1</div></div> <div class="cell out"><div class="team">TK 2</div></div> <div class="cell out">
             <div class="team">TK 3</div>
             <div class="v-line" style="height: 50px; top: -25px;"></div>
         </div>
-        <div class="cell out"><div class="team">TK 4</div></div>
-        <div class="cell out">
-            <div class="team">TK 5</div>
-            <div class="v-line" style="height: 50px; top: -25px;"></div>
+        <div class="cell out"><div class="team">TK 4</div></div> <div class="cell out">
+            <div class="team">TK 5</div> <div class="v-line" style="height: 50px; top: -25px;"></div>
         </div>
         <div class="cell out"><div class="team">TK 6</div></div>
         <div class="cell out"><div class="team">TK 7</div></div>
-        <div class="cell out"><div class="team">TK 8</div></div>
-        <div class="cell out">
+        <div class="cell out"><div class="team">TK 8</div></div> <div class="cell out">
             <div class="team">TK 9</div>
             <div class="v-line" style="height: 50px; top: -25px;"></div>
         </div>
         <div class="cell out"><div class="team">TK 10</div></div>
         <div class="cell out">
-            <div class="team">TK 11</div>
-            <div class="v-line" style="height: 50px; top: -25px;"></div>
+            <div class="team">TK 11</div> <div class="v-line" style="height: 50px; top: -25px;"></div>
         </div>
         <div class="cell out"><div class="team">TK 12</div></div>
     </div>
@@ -110,36 +104,33 @@
     <div class="gap"></div>
 
     <div class="column">
-        <div class="cell" style="height: 25px;"></div> <div class="cell in out"><div class="team">Match 1</div></div> 
-        <div class="cell" style="height: 50px;"></div> <div class="cell in out">
-            <div class="team">Match 2</div>
-            <div class="v-line" style="height: 100px; top: -50px;"></div>
+        <div class="cell" style="height: 50px;"></div> <div class="cell in out"><div class="team">Match 1</div></div> <div class="cell" style="height: 100px;"></div> <div class="cell in out">
+            <div class="team">Match 2</div> <div class="v-line" style="height: 150px; top: -75px;"></div>
         </div>
-        <div class="cell" style="height: 100px;"></div> <div class="cell in out"><div class="team">Match 3</div></div>
-        <div class="cell" style="height: 50px;"></div>
-        <div class="cell in out">
-            <div class="team">Match 4</div>
-            <div class="v-line" style="height: 100px; top: -50px;"></div>
+        
+        <div class="cell" style="height: 100px;"></div> <div class="cell in out"><div class="team">Match 3</div></div> <div class="cell" style="height: 100px;"></div> <div class="cell in out">
+            <div class="team">Match 4</div> <div class="v-line" style="height: 150px; top: -75px;"></div>
         </div>
     </div>
 
     <div class="gap"></div>
 
     <div class="column">
-        <div class="slot" style="height: 75px;"></div>
+        <div class="cell" style="height: 125px;"></div>
         <div class="cell in out"><div class="team">SEMIFINAL 1</div></div>
-        <div class="cell" style="height: 200px;"></div>
+        
+        <div class="cell" style="height: 250px;"></div>
         <div class="cell in out">
             <div class="team">SEMIFINAL 2</div>
-            <div class="v-line" style="height: 250px; top: -125px;"></div>
+            <div class="v-line" style="height: 300px; top: -150px;"></div>
         </div>
     </div>
 
     <div class="gap"></div>
 
     <div class="column">
-        <div class="cell" style="height: 200px;"></div>
-        <div class="cell in"><div class="team final-box">GRAND FINAL</div></div>
+        <div class="cell" style="height: 275px;"></div>
+        <div class="cell in"><div class="team gold-box">GRAND FINAL</div></div>
     </div>
 </div>
 
