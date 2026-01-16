@@ -3,124 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TK - Live Score</title>
+    <title>TK - Live Score Tournament</title>
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; background: #064e3b; color: white; }
-        header { background: #022c22; padding: 20px; text-align: center; }
-        .back { margin: 15px; display: inline-block; background: #ecfdf5; color: #022c22; 
-                padding: 10px 20px; border-radius: 10px; text-decoration: none; font-weight: bold; }
-        
-        /* Container Utama Bracket */
-        .bracket-container {
+        :root {
+            --bg-color: #064e3b;
+            --header-bg: #022c22;
+            --box-bg: #ecfdf5;
+            --text-dark: #022c22;
+            --line-color: #ecfdf5;
+            --accent-color: #fbbf24;
+        }
+
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: var(--bg-color); 
+            color: white; 
+            line-height: 1.5;
+        }
+
+        header { 
+            background: var(--header-bg); 
+            padding: 30px; 
+            text-align: center; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .back { 
+            margin: 20px; 
+            display: inline-block; 
+            background: var(--box-bg); 
+            color: var(--text-dark); 
+            padding: 10px 25px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        .back:hover { transform: scale(1.05); }
+
+        /* Bracket Wrapper */
+        .bracket {
             display: flex;
+            padding: 40px;
             justify-content: center;
-            padding: 40px 20px;
-            overflow-x: auto;
+            min-width: max-content;
         }
 
         .round {
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-            margin-right: 0;
-            width: 220px;
+            width: 200px;
+            margin-right: 50px; /* Jarak antar babak */
         }
 
-        .match-container {
+        .round-title {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            height: 20px;
+        }
+
+        /* Match Styling */
+        .match-list {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            position: relative;
-            padding: 10px 0;
             flex-grow: 1;
+            justify-content: space-around;
         }
 
-        .match {
-            background: #ecfdf5;
-            color: #022c22;
-            padding: 10px;
-            margin: 5px 20px;
+        .match-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .match-box {
+            background: var(--box-bg);
+            color: var(--text-dark);
+            width: 100%;
+            padding: 12px;
             border-radius: 8px;
             text-align: center;
             font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             z-index: 2;
+            position: relative;
         }
 
-        .score { font-size: 18px; margin-top: 5px; border-top: 1px solid #064e3b; padding-top: 5px; }
-        h2, h3 { text-align: center; margin-bottom: 20px; color: #ecfdf5; }
+        .score-row {
+            border-top: 1px solid rgba(0,0,0,0.1);
+            margin-top: 8px;
+            padding-top: 5px;
+            font-size: 1.2em;
+            color: #059669;
+        }
 
-        /* Garis Penghubung (Konektor) */
-        .match-container::after {
+        /* Logic Garis Penghubung */
+        .match-item::after {
             content: "";
             position: absolute;
-            right: 0;
-            width: 20px;
+            right: -50px; /* Menghubungkan ke babak berikutnya */
+            width: 50px;
             height: 50%;
-            border-right: 2px solid #ecfdf5;
+            border-right: 2px solid var(--line-color);
         }
 
-        /* Mengatur garis naik atau turun untuk menyambung ke babak berikutnya */
-        .match-container:nth-child(odd)::after {
+        /* Garis Keluar dari Kotak */
+        .match-item::before {
+            content: "";
+            position: absolute;
+            right: -25px; 
             top: 50%;
-            border-top: 2px solid #ecfdf5;
-        }
-        .match-container:nth-child(even)::after {
-            bottom: 50%;
-            border-bottom: 2px solid #ecfdf5;
+            width: 25px;
+            border-top: 2px solid var(--line-color);
         }
 
-        /* Menghilangkan garis pada kolom terakhir (Final) */
-        .round:last-child .match-container::after {
+        /* Cabang Atas (Siku Turun) */
+        .match-item:nth-child(odd)::after {
+            top: 50%;
+            border-top: 2px solid var(--line-color);
+            border-radius: 0 10px 0 0;
+        }
+
+        /* Cabang Bawah (Siku Naik) */
+        .match-item:nth-child(even)::after {
+            bottom: 50%;
+            border-bottom: 2px solid var(--line-color);
+            border-radius: 0 0 10px 0;
+        }
+
+        /* Menghubungkan Siku ke Babak Berikutnya */
+        .round:not(:last-child) .match-item::after {
+            display: block;
+        }
+
+        /* Sembunyikan garis pada kolom terakhir */
+        .round:last-child .match-item::after, 
+        .round:last-child .match-item::before {
             display: none;
         }
 
-        /* Khusus Perebutan Juara 3 agar terpisah sedikit */
-        .juara-3 { margin-top: 50px; border: 2px dashed #ecfdf5; background: transparent; color: white; }
+        /* Khusus untuk babak dengan 1 kotak (Final) agar garis inputnya pas */
+        .round:nth-child(2) .match-item::after { height: 25%; }
+        .round:nth-child(2) .match-item:nth-child(odd)::after { top: 50%; }
 
-        @media (max-width: 768px) {
-            .bracket-container { justify-content: flex-start; }
+        .final-box {
+            background: var(--accent-color);
+            border: 2px solid #fff;
+        }
+
+        .third-place {
+            margin-top: 40px;
+            background: transparent;
+            border: 2px dashed var(--box-bg);
+            color: white;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h2>KATEGORI TK – 12 TIM</h2>
+    <h2 style="margin:0">KATEGORI TK – 12 TIM</h2>
+    <p style="opacity: 0.8; font-size: 0.9em;">Tournament Bracket System</p>
 </header>
 
-<a class="back" href="index.html">← HOME</a>
+<a class="back" href="index.html">← KEMBALI KE HOME</a>
 
-<div class="bracket-container">
+<div class="bracket">
     <div class="round">
-        <h3>Babak Awal</h3>
-        <div class="match-container"><div class="match">TK 1<div class="score">0 : 0</div>TK 2</div></div>
-        <div class="match-container"><div class="match">TK 3<div class="score">0 : 0</div>TK 4</div></div>
-        <div class="match-container"><div class="match">TK 5<div class="score">0 : 0</div>TK 6</div></div>
-        <div class="match-container"><div class="match">TK 7<div class="score">0 : 0</div>TK 8</div></div>
+        <div class="round-title">Babak Awal</div>
+        <div class="match-list">
+            <div class="match-item"><div class="match-box">TK 1 vs TK 2<div class="score-row">0 : 0</div></div></div>
+            <div class="match-item"><div class="match-box">TK 3 vs TK 4<div class="score-row">0 : 0</div></div></div>
+            <div class="match-item"><div class="match-box">TK 5 vs TK 6<div class="score-row">0 : 0</div></div></div>
+            <div class="match-item"><div class="match-box">TK 7 vs TK 8<div class="score-row">0 : 0</div></div></div>
+        </div>
     </div>
 
     <div class="round">
-        <h3>8 Besar</h3>
-        <div class="match-container"><div class="match">Pemenang vs TK 9<div class="score">0 : 0</div></div></div>
-        <div class="match-container"><div class="match">Pemenang vs TK 10<div class="score">0 : 0</div></div></div>
-        <div class="match-container"><div class="match">Pemenang vs TK 11<div class="score">0 : 0</div></div></div>
-        <div class="match-container"><div class="match">Pemenang vs TK 12<div class="score">0 : 0</div></div></div>
+        <div class="round-title">8 Besar</div>
+        <div class="match-list">
+            <div class="match-item"><div class="match-box">Winner 1 vs TK 9<div class="score-row">0 : 0</div></div></div>
+            <div class="match-item"><div class="match-box">Winner 2 vs TK 10<div class="score-row">0 : 0</div></div></div>
+            <div class="match-item"><div class="match-box">Winner 3 vs TK 11<div class="score-row">0 : 0</div></div></div>
+            <div class="match-item"><div class="match-box">Winner 4 vs TK 12<div class="score-row">0 : 0</div></div></div>
+        </div>
     </div>
 
     <div class="round">
-        <h3>Semifinal</h3>
-        <div class="match-container"><div class="match">Semifinal 1<div class="score">0 : 0</div></div></div>
-        <div class="match-container"><div class="match">Semifinal 2<div class="score">0 : 0</div></div></div>
+        <div class="round-title">Semifinal</div>
+        <div class="match-list">
+            <div class="match-item"><div class="match-box">Semifinal 1<div class="score-row">0 : 0</div></div></div>
+            <div class="match-item"><div class="match-box">Semifinal 2<div class="score-row">0 : 0</div></div></div>
+        </div>
     </div>
 
     <div class="round">
-        <h3>Final</h3>
-        <div class="match-container">
-            <div class="match" style="background: #fbbf24;">FINAL<div class="score">0 : 0</div></div>
-            <div class="match juara-3">JUARA 3<div class="score">0 : 0</div></div>
+        <div class="round-title">Final & Juara 3</div>
+        <div class="match-list">
+            <div class="match-item">
+                <div class="match-box final-box">GRAND FINAL<div class="score-row">0 : 0</div></div>
+                <div class="match-box third-place">JUARA 3<div class="score-row">0 : 0</div></div>
+            </div>
         </div>
     </div>
 </div>
